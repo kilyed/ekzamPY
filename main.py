@@ -183,7 +183,7 @@ if nMoves == (xBtn*yBtn - mines) and mines == mrk:
 myfile = open(fileName, mode='w', encoding='UTF-8')
 json.dump(jsonArr, myfile)
 myfile.close()
-print(jsonArr)
+# print(jsonArr)
 # ------------------------------
 jsonArrForLose = []
 fileName = "LoseScore.txt"
@@ -198,4 +198,31 @@ if nMoves <= (xBtn * yBtn - mines) or mines >= mrk:
 myFile = open(fileName, mode='w', encoding='UTF-8')
 json.dump(jsonArrForLose, myFile)
 myFile.close()
-print(jsonArrForLose)
+# print(jsonArrForLose)
+if jsonArr[0] >= 1:
+    print("*Получено достижение!*\n\t*Первая победа!*")
+if jsonArr[0] >= 3:
+    print("*Получено достижение!*\n\t*Третья победа!*")
+if jsonArr[0] >= 5:
+    print("*Получено достижение!*\n\t*Пятая победа!*")
+if jsonArr[0] >= 7:
+    print("*Получено достижение!*\n\t*Седьмая победа!*")
+if jsonArr[0] >= 10:
+    print("*Получено достижение!*\n\t*Десятая победа!*")
+if jsonArrForLose[0] >= 1:
+    print("-Получено достижение...-\n\t-Первое поражение-")
+if jsonArrForLose[0] >= 3:
+    print("-Получено достижение...-\n\t-Третье поражение-")
+if jsonArrForLose[0] >= 5:
+    print("-Получено достижение...-\n\t-Пятое поражение-")
+if jsonArrForLose[0] >= 7:
+    print("-Получено достижение...-\n\t-Седьмое поражение-")
+if jsonArrForLose[0] >= 10:
+    print("-Получено достижение...-\n\t-Десятое поражение-")
+if nMoves < 5:
+    print("<3Получено достичение<3\n\t<3Количество ходов меньше 5!<3")
+if nMoves >5<10 :
+    print("<3Получено достичение<3\n\t<3Количество ходов меньше 10!<3")
+
+
+
