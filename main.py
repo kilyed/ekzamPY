@@ -114,7 +114,7 @@ def newGame():
 
 def set5x5():
     global xBtn, yBtn
-    xBtn = 5; yBtn = 5
+    xBtn = 2; yBtn = 2
     newGame()
 
 def set8x8():
@@ -134,8 +134,9 @@ def set16x16():
 
 def set32x32():
     global xBtn, yBtn
-    xBtn = 4; yBtn = 3
+    xBtn = 32; yBtn = 32
     newGame()
+
 
 def playground():
     global xBtn, yBtn
@@ -165,19 +166,36 @@ Button(frmTop, text='10x14', font=(16),
        command=set10x14).pack(side=LEFT, expand=YES, fill=X, anchor=N)
 Button(frmTop, text='16x16', font=(16),
        command=set16x16).pack(side=LEFT, expand=YES, fill=X, anchor=N)
-Button(frmTop, text='Star', font=(16),
+Button(frmTop, text='32x32', font=(16),
        command=set32x32).pack(side=LEFT, expand=YES, fill=X, anchor=N)
 
 mainloop()
-scoreWin=0
-jsonArr=[]
-fileName="userScore.txt"
-myfile = open(fileName,mode='r', encoding='UTF-8')
-myfile.close()
+jsonArr = []
+fileName = "WinScore.txt"
+myfile = open(fileName, mode='r', encoding='UTF-8')
+jsonArr=json.load(myfile)
+scoreWin = jsonArr[0]
 if nMoves == (xBtn*yBtn - mines) and mines == mrk:
-    scoreWin=scoreWin+1
+    scoreWin = scoreWin + 1
+    jsonArr = []
     jsonArr.append(scoreWin)
-myfile = open(fileName,mode='r', encoding='UTF-8')
-json.dump(jsonArr,myfile)
+
+myfile = open(fileName, mode='w', encoding='UTF-8')
+json.dump(jsonArr, myfile)
 myfile.close()
 print(jsonArr)
+# ------------------------------
+jsonArrForLose = []
+fileName = "LoseScore.txt"
+myFile = open(fileName, mode='r', encoding='UTF-8')
+jsonArrForLose = json.load(myFile)
+scoreLose = jsonArrForLose[0]
+if nMoves <= (xBtn * yBtn - mines) or mines >= mrk:
+    scoreLose = scoreLose + 1
+    jsonArrForLose = []
+    jsonArrForLose.append(scoreLose)
+
+myFile = open(fileName, mode='w', encoding='UTF-8')
+json.dump(jsonArrForLose, myFile)
+myFile.close()
+print(jsonArrForLose)
